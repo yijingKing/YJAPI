@@ -12,7 +12,7 @@ import Alamofire
 /// 网络请求
 public protocol YJRequestAPI: YJRequestConfig, YJResponseAdapter {
     /// 数据打印(默认开启,可重定义)
-    func log(_ data: Data?, error: Error?)
+    func log(_ data: Data?, error: Error?,time: TimeInterval?)
 }
 
 public extension YJRequestAPI {
@@ -48,55 +48,51 @@ public extension YJRequestAPI {
             break
         }
         
-        dataRequest?.responseData { dataResponse in
-            
+        dataRequest?.responseDecodable(of: YJResponseType.self, completionHandler: { dataResponse in
             var lastError: Error?
             var response: YJResponseType?
             var lastData: Data?
             switch dataResponse.result {
-            case .success(let data):
-                do {
-                    let obj = try JSONDecoder().decode(YJResponseType.self, from: data)
-                    lastData = data
-                    response = obj
-                } catch  {
-                    lastError = error
-                }
+            case .success(let model):
+                lastData = dataResponse.data
+                response = model
             case .failure(let afError):
                 lastError = afError
             }
-            log(lastData, error: lastError)
+            log(lastData, error: lastError,time: dataResponse.metrics?.taskInterval.duration)
             adapter(response: response, error: lastError, success: success, failure: failure)
-        }
+        })
     }
     /// 数据打印(默认开启,可重定义)
-    func log(_ data: Data?, error: Error?) {
+    func log(_ data: Data?, error: Error?,time: TimeInterval?) {
         
         if !openLog {
             return
         }
-#if DEBUG
-        print("🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼")
         print("""
-        接口描述: \(describe)
-        url: \(url)
-        header: \(headers)
-        method: \(method.rawValue)
-        param: \(parameters?.toJson() ?? "")
+        ╔═══════ 🎈 Request Parameters 🎈 ═══════
+        ║Describe: \(describe)
+        ║Time:\(time ?? 0.0)
+        ║URL: \(url)
+        ║Header: \(headers)
+        ║Method: \(method.rawValue)
+        ║Param: \(parameters?.toJson() ?? "")
+        ╚════════════════════════════════════════
         """)
-        print("===============================================")
         if let err = error {
             print("""
-            error: \(err)
+            ╔═══════ 🎈 Request Error 🎈 ═══════
+            ║Error: \(err)
+            ╚═══════════════════════════════════
             """)
         }
         if let data = data {
             print("""
-            response: \(toJson(data) ?? ""))
+            ╔═══════ 🎈 Request Response 🎈 ═══════
+            ║Response: \(toJson(data) ?? "")
+            ╚══════════════════════════════════════
             """)
         }
-        print("🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼")
-#endif
     }
 }
 

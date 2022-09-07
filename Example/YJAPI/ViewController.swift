@@ -80,7 +80,7 @@ extension BaseAPI {
 //}
 
 struct LoginModel: Codable {
-    var token: Int?
+    var token: String?
 }
 
 class ViewController: UIViewController {
@@ -96,7 +96,7 @@ class ViewController: UIViewController {
         Home(parameters: .init(loginName: "18250808695", password: "qwer1234")).request { result in
             switch result {
             case .success(let obj):
-                print("131231212123====\(obj?.result?.token ?? 0)")
+                print("131231212123====\(obj?.result?.token)")
                 
             case .failure(let error): print("wqeqweqweewqe=====\(error)")
             }

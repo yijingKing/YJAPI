@@ -13,7 +13,9 @@ public protocol YJResponseAdapter {
     associatedtype YJResponseType: Codable
     typealias YJResult = Result<YJResponseType?, Error>
     
+    /// 数据结果处理
     func adapter(response: YJResponseType?, error: Error?, success:((YJResponseType?) -> Void)?, failure: ((Error) -> Void)?)
+    
 }
 
 public extension YJResponseAdapter {

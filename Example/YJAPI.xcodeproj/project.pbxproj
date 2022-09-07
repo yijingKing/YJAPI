@@ -44,7 +44,7 @@
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		72D1CD968CDD52E78616B9F2 /* Pods_YJAPI_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YJAPI_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		89CA6EEED24D4AB8A1A89B6B /* YJAPI.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = YJAPI.podspec; path = ../YJAPI.podspec; sourceTree = "<group>"; };
+		89CA6EEED24D4AB8A1A89B6B /* YJAPI.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = YJAPI.podspec; path = ../YJAPI.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		8CCF2982386B4B2565B6B9C4 /* Pods-YJAPI_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YJAPI_Tests.debug.xcconfig"; path = "Target Support Files/Pods-YJAPI_Tests/Pods-YJAPI_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		AFE9332188FA460ED9767444 /* Pods-YJAPI_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YJAPI_Tests.release.xcconfig"; path = "Target Support Files/Pods-YJAPI_Tests/Pods-YJAPI_Tests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
