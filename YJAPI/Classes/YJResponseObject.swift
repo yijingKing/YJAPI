@@ -32,7 +32,7 @@ public struct YJResponseObject<T:Codable>: Codable {
     
     public var code: Int?
     
-    public var message: String?
+    public var msg: String?
     
     public var result: T?
     
@@ -42,7 +42,7 @@ public struct YJResponseObject<T:Codable>: Codable {
 
 extension YJResponseObject: LocalizedError {
     public var errorDescription: String? {
-        return error ?? message
+        return error ?? msg
     }
     
     public var yexError: YEXError {
