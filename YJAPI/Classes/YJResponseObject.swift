@@ -15,6 +15,10 @@ public struct YEXError: Codable {
     public var msg: String?
     
     public static let unReachAbleCode = 999999
+    public init(code: Int? = nil, msg: String? = nil) {
+        self.code = code
+        self.msg = msg
+    }
 }
 
 extension YEXError: LocalizedError {
