@@ -34,7 +34,11 @@ public struct YJResponseObject<T:Codable>: Codable {
     
     public var msg: String?
     
+    public var message: String?
+    
     public var result: T?
+    
+    public var data: T?
     
     public var error: String?
     
